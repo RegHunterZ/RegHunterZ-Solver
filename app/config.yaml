@@ -1,3 +1,0 @@
-
-ocr:
-  tesseract_path: ''  # Állítsd be ide a tesseract.exe teljes elérési útját, ha nem autodetekttel találnánk
