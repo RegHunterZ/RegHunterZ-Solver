@@ -1,0 +1,15 @@
+KKPoker_Solver v11 — Main Logo Center Patch (v17)
+-------------------------------------------------
+- Injected 'reghuterz-hatternelkul_1.png' and wired the Main page to show it
+  in large size, centered. The LogoWidget uses Expanding size policy and smooth scaling.
+
+Files changed:
+- app/main.py  (size policy tweak for LogoWidget)
+- reghuterz-hatternelkul_1.png  (added at project root and /app/)
+
+How it works:
+- On startup the Home tab creates LogoWidget which searches for the PNG in:
+  ../reghuterz-hatternelkul_1.png, ./app/reghuterz-hatternelkul_1.png,
+  and CWD. The file is now present in the first two locations in this package.
+
+Requested by user: center and enlarge the provided logo on the main page.

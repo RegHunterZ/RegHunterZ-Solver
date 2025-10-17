@@ -1,0 +1,1 @@
+HH OCR rövid leírás. Lásd run_hh_ocr_demo.py
