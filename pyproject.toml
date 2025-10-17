@@ -1,0 +1,14 @@
+[project]
+name = "regsolver-cli"
+version = "0.1.0"
+description = "CLI skeleton for RegHunterZ Solver utilities (parsing, export, helpers)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "RegHunterZ", email = "" }]
+
+[project.dependencies]
+click = "^8.1.7"
+
+[project.scripts]
+regsolver = "regsolver_cli.cli:main"

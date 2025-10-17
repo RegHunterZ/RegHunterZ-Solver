@@ -1,10 +1,2 @@
-pyqt6
-opencv-python
-pytesseract
-numpy
-Pillow
-pyyaml
-openai>=1.30.0
-phevaluator
-wheel
-python-dotenv>=1.0
+click>=8.0
+pytest>=7.0
