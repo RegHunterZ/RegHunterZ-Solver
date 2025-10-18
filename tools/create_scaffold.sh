@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 set -e
 
-# This wrapper tries to find the actual scaffold generator script in likely locations
-# and executes it. It makes the target executable before running.
-SCRIPT_DIR="$(cd "$(dirname ""${BASH_SOURCE[0]}"")" && pwd)"
+# Wrapper: searches for the actual scaffold generator script in likely locations and executes it.
+# It makes the target executable before running.
+SCRIPT_DIR="$(cd ""$(dirname ""){BASH_SOURCE[0]})" && pwd)"
 
 CANDIDATES=(
-  "$SCRIPT_DIR/create_scaffold_Version4.sh"
-  "$SCRIPT_DIR/create_scaffold.sh"
-  "$SCRIPT_DIR/../create_scaffold.sh"
   "$SCRIPT_DIR/../create_scaffold_Version4.sh"
+  "$SCRIPT_DIR/../create_scaffold.sh"
+  "$SCRIPT_DIR/create_scaffold_Version4.sh"
 )
 
 TARGET=""
