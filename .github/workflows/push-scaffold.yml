@@ -13,8 +13,8 @@ jobs:
 
       - name: Run scaffold generator
         run: |
-          chmod +x tools/create_scaffold.sh
-          ./tools/create_scaffold.sh
+          chmod +x tools/create_scaffold_Version4.sh
+          ./tools/create_scaffold_Version4.sh
 
       - name: Configure git
         run: |
@@ -30,5 +30,4 @@ jobs:
         env:
           BOT_BAT: ${{ secrets.BOT_BAT }}
         run: |
-          # push to scaffold branch instead of main
-          git push https://x-access-token:${BOT_BAT}@github.com/RegHunterZ/RegHunterZ-Solver.git HEAD:scaffold
+          git push https://x-access-token:${BOT_BAT}@github.com/${{ github.repository }} HEAD:scaffold
