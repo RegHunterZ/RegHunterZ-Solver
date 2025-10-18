@@ -1,0 +1,33 @@
+name: Push scaffold files with BOT_BAT
+on:
+  workflow_dispatch:
+
+jobs:
+  push-scaffold:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo (no credentials)
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run scaffold generator
+        run: |
+          chmod +x tools/create_scaffold.sh
+          ./tools/create_scaffold.sh
+
+      - name: Configure git
+        run: |
+          git config user.name "reghunterz-bot"
+          git config user.email "bot@localhost"
+
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "scaffold: add server, client, tools, README, CI" || echo "No changes to commit"
+
+      - name: Push using PAT
+        env:
+          BOT_BAT: ${{ secrets.BOT_BAT }}
+        run: |
+          git push https://x-access-token:${BOT_BAT}@github.com/RegHunterZ/RegHunterZ-Solver.git HEAD:main
