@@ -1,0 +1,1 @@
+{\n  "name": "reghunterz-solver-client",\n  "version": "0.1.0",\n  "private": true,\n  "scripts": {\n    "start": "npx serve -s . -l 5173"\n  }\n}
