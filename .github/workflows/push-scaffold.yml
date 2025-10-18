@@ -13,8 +13,8 @@ jobs:
 
       - name: Run scaffold generator
         run: |
-          chmod +x tools/create_scaffold_Version4.sh
-          ./tools/create_scaffold_Version4.sh
+          chmod +x tools/create_scaffold.sh
+          ./tools/create_scaffold.sh
 
       - name: Configure git
         run: |
