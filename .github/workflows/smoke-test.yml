@@ -1,0 +1,53 @@
+name: CI — smoke test
+
+on:
+  push:
+    branches:
+      - main
+      - 'feat/**'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install server dependencies
+        working-directory: server
+        run: |
+          npm ci
+
+      - name: Start server in background
+        working-directory: server
+        run: |
+          nohup npm start > server.log 2>&1 &
+          # wait up to 20s for server to accept connections
+          retries=0
+          until curl -sS http://localhost:3000/api/ping >/dev/null 2>&1 || [ $retries -ge 20 ]; do
+            retries=$((retries+1))
+            sleep 1
+          done
+          if [ $retries -ge 20 ]; then
+            echo "Server did not start in time"
+            tail -n +1 server.log || true
+            exit 1
+          fi
+
+      - name: Smoke test — /api/ping
+        run: |
+          curl -fS http://localhost:3000/api/ping
+
+      - name: Show server log (for debug)
+        if: failure()
+        run: |
+          echo "=== server.log ==="
+          cat server/server.log || true
