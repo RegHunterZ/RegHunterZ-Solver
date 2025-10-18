@@ -13,8 +13,8 @@ jobs:
 
       - name: Run scaffold generator
         run: |
-          chmod +x tools/create_scaffold.sh
-          ./tools/create_scaffold.sh
+          chmod +x tools/create_scaffold_Version4.sh
+          ./tools/create_scaffold_Version4.sh
 
       - name: Configure git
         run: |
@@ -26,8 +26,8 @@ jobs:
           git add .
           git commit -m "scaffold: add server, client, tools, README, CI" || echo "No changes to commit"
 
-      - name: Push using PAT
+      - name: Push using PAT to scaffold branch
         env:
           BOT_BAT: ${{ secrets.BOT_BAT }}
         run: |
-          git push https://x-access-token:${BOT_BAT}@github.com/RegHunterZ/RegHunterZ-Solver.git HEAD:main
+          git push https://x-access-token:${BOT_BAT}@github.com/${{ github.repository }} HEAD:scaffold
