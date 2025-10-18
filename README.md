@@ -1,15 +1,11 @@
 # RegHunterZ-Solver
 
-Cél: Poker solver + replayer, ami fogad képi, TXT és konzolos inputot, elküldi a leosztást OpenAI-nak és visszakapott stratégiai elemzést megjeleníti.
-
-Fő komponensek:
-- server: Node.js + Express — elemzés API, OpenAI integráció, OCR hook
-- client: React — replayer, hand editor, range vizualizáció
-- tools: CLI — kézi/konzol input és küldés
+Cél: Poker solver + replayer — képi (OCR), TXT és konzol input, OpenAI alapú elemzés, replayer vizualizáció.
 
 Kezdeti telepítés (lokálisan)
 1. Klónozd:
    git clone https://github.com/RegHunterZ/RegHunterZ-Solver.git
+   cd RegHunterZ-Solver
 2. Server:
    cd server
    cp .env.example .env
@@ -20,15 +16,7 @@ Kezdeti telepítés (lokálisan)
    npm install
    npm run dev
 
-ENV változók:
-- OPENAI_API_KEY — OpenAI API kulcs (server oldalon)
-- SOLVER_API_URL — (opcionális) a server URL-je a CLI-hoz
-
-API (példa)
-- POST /api/analyze
-  - body: hand JSON vagy TXT (multipart/form-data ha image)
-  - válasz: strukturált JSON stratégiai elemzés
-
-Prompt és válasz formátum: a server a promptTemplates/analyzePrompt.txt alapján generálja a kérdést a GPT-nek.
-
----
+ENV változók (.env)
+- OPENAI_API_KEY — OpenAI API kulcs (server)
+- OPENAI_MODEL — alapértelmezett modell
+- PORT — server port (opcionális)
